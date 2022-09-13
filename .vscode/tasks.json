@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Investiments.API/Investiments.API.csproj",
+                "${workspaceFolder}/Investments.API/Investments.API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Investiments.API/Investiments.API.csproj",
+                "${workspaceFolder}/Investments.API/Investments.API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Investiments.API/Investiments.API.csproj"
+                "${workspaceFolder}/Investments.API/Investments.API.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
