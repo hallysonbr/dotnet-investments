@@ -20,8 +20,7 @@ namespace Investments.InfraStructure.Data.Repositories
 
         public async Task AddAsync(Carteira carteira)
         {
-            await _context.Carteiras.AddAsync(carteira);
-            await SaveChangesAsync();
+            await _context.Carteiras.AddAsync(carteira);            
         }
 
         public async Task SaveChangesAsync()

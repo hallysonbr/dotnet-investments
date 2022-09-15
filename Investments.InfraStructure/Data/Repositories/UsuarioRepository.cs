@@ -21,17 +21,19 @@ namespace Investments.InfraStructure.Data.Repositories
 
         public async Task AddAsync(Usuario usuario)
         {
-            await _context.Usuarios.AddAsync(usuario);
-            await SaveChangesAsync();
+            await _context.Usuarios.AddAsync(usuario);           
         }
 
         public async Task<List<Usuario>> GetAllAsync()
         {
-            return await _context.Usuarios.Include(u => u.Ativos)
-                        .Where(a => a.Tipo == UsuarioTipoEnum.Cliente)
-                        .ToListAsync();
+            return await _context.Usuarios.Include(u => u.Ativos).ToListAsync();
         }
-                
+
+        public async Task<Usuario> GetById(int id)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == u.Id);
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

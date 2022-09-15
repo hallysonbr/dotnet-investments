@@ -16,12 +16,12 @@ namespace Investments.Core.Entities
             Ativos = new List<Carteira>();            
         }
 
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public UsuarioTipoEnum Tipo { get; set; }
-        public virtual List<Carteira> Ativos { get; set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public string Password { get; private set; }
+        public DateTime DataNascimento { get; private set; }
+        public UsuarioTipoEnum Tipo { get; private set; }
+        public virtual List<Carteira> Ativos { get; private set; }
 
 
         public void DefinirAdmin()

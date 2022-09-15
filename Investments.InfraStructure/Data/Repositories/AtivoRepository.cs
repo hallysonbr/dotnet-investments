@@ -20,8 +20,7 @@ namespace Investments.InfraStructure.Data.Repositories
 
         public async Task AddAsync(Ativo ativo)
         {
-            await _context.Ativos.AddAsync(ativo);
-            await SaveChangesAsync();
+            await _context.Ativos.AddAsync(ativo);            
         }
 
         public async Task<List<Ativo>> GetAllAsync()

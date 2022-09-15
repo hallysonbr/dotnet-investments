@@ -6,7 +6,8 @@ namespace Investments.Core.Repositories
 {
     public interface IUsuarioRepository
     {
-         Task<List<Usuario>> GetAllAsync();        
+         Task<List<Usuario>> GetAllAsync();
+         Task<Usuario> GetById(int id);        
          Task AddAsync(Usuario usuario);         
          Task SaveChangesAsync();
     }

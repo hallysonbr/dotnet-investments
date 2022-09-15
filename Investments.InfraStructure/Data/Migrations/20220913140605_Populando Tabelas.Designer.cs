@@ -4,14 +4,16 @@ using Investments.InfraStructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Investments.InfraStructure.Data.Migrations
 {
     [DbContext(typeof(InvestmentsContext))]
-    partial class InvestmentsContextModelSnapshot : ModelSnapshot
+    [Migration("20220913140605_Populando Tabelas")]
+    partial class PopulandoTabelas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

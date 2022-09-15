@@ -1,4 +1,10 @@
+using Investments.Application.Commands.CadastrarGerente;
+using Investments.Core.Repositories;
+using Investments.InfraStructure.CrossCutting.Auth.Implementations;
+using Investments.InfraStructure.CrossCutting.Auth.Interfaces;
 using Investments.InfraStructure.Data.Context;
+using Investments.InfraStructure.Data.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,11 +34,22 @@ namespace Investiments.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-             var connectionString = Configuration.GetConnectionString("InvestmentsCs");
-             services.AddDbContext<InvestmentsContext>(options => options.UseSqlServer(connectionString));
+
+            var connectionString = Configuration.GetConnectionString("InvestmentsCs");
+            services.AddDbContext<InvestmentsContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddScoped<IAtivoRepository, AtivoRepository>();
+            services.AddScoped<ICarteiraRepository, CarteiraRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IAuthService, AuthService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             services.AddControllers();
+            
+            services.AddMediatR(typeof(CadastrarGerenteCommand));
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Investments.API", Version = "v1" });

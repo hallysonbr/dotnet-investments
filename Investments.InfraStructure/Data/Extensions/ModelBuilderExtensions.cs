@@ -18,6 +18,8 @@ namespace Investments.InfraStructure.Data.Extensions
             "36F583DD16F4E1E201EB1E6F6D8E35A2CCB3BBE2658DE46B4FFAE7B0E9ED872E", 
             new DateTime(1994, 04, 18), UsuarioTipoEnum.Admin);
 
+            usuario.DefinirId(1);
+
             builder.Entity<Usuario>()
                 .HasData(usuario);
 
@@ -40,6 +42,13 @@ namespace Investments.InfraStructure.Data.Extensions
                 new Ativo("Bitcoin", TipoAtivoEnum.Criptomoeda),
                 new Ativo("Ethereum", TipoAtivoEnum.Criptomoeda)
             };
+            
+            int i = 1;
+            foreach (var item in ativos)
+            {
+                item.DefinirId(i);
+                i++;
+            }
 
             builder.Entity<Ativo>()
                    .HasData(ativos);
