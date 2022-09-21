@@ -6,7 +6,8 @@ namespace Investments.Core.Repositories
 {
     public interface IAtivoRepository
     {
-         Task<List<Ativo>> GetAllAsync();        
+         Task<List<Ativo>> GetAllAsync();
+         Task<Ativo> GetByIdAsync(int id);        
          Task AddAsync(Ativo ativo);
          Task SaveChangesAsync();
     }

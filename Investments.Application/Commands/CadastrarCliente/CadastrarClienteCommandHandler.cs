@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Investments.Core.Entities;
@@ -29,7 +26,7 @@ namespace Investments.Application.Commands.CadastrarCliente
                                       request.Usuario.Email, 
                                       hashPassword, 
                                       request.Usuario.DataNascimento, 
-                                      UsuarioTipoEnum.Gerente);
+                                      UsuarioTipoEnum.Cliente);
 
             await _uof.UsuarioRepository.AddAsync(cliente);
             await _uof.Commit();

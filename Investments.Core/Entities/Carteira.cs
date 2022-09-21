@@ -5,7 +5,7 @@ namespace Investments.Core.Entities
         public Carteira(int usuarioId, int ativoId, decimal saldo)
         {
             UsuarioId = usuarioId;
-            UsuarioId = ativoId;
+            AtivoId = ativoId;
             Saldo = saldo;
         }
 

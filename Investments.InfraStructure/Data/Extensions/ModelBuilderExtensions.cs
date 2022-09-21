@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Investments.Core.Entities;
 using Investments.Core.Enums;
 using Microsoft.EntityFrameworkCore;

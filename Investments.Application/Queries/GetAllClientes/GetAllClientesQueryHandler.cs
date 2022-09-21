@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -23,7 +22,7 @@ namespace Investments.Application.Queries.GetAllClientes
         {
            var usuarios = await _uof.UsuarioRepository.GetAllAsync();
            var usuariosVm = usuarios.Where(u => u.Tipo == UsuarioTipoEnum.Cliente)
-                                    .Select(a => new UsuarioViewModel(a.Nome, a.Email, a.DataNascimento))
+                                    .Select(a => new UsuarioViewModel(a.Id, a.Nome, a.Email, a.CalcularIdade(), a.Tipo, a.Ativos))
                                     .ToList();
             
             return usuariosVm;

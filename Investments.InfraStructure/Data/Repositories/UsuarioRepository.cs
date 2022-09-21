@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Investments.Core.Entities;
-using Investments.Core.Enums;
 using Investments.Core.Repositories;
 using Investments.InfraStructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -26,12 +23,16 @@ namespace Investments.InfraStructure.Data.Repositories
 
         public async Task<List<Usuario>> GetAllAsync()
         {
-            return await _context.Usuarios.Include(u => u.Ativos).ToListAsync();
+            return await _context.Usuarios.Include(u => u.Ativos)
+                                          .ThenInclude(a => a.Ativo)                                                                       
+                                          .ToListAsync();
         }
 
         public async Task<Usuario> GetById(int id)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == u.Id);
+            return await _context.Usuarios.Include(u => u.Ativos)
+                                          .ThenInclude(a => a.Ativo)
+                                          .FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task SaveChangesAsync()

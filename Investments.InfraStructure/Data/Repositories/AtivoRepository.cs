@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Investments.Core.Entities;
 using Investments.Core.Repositories;
@@ -26,6 +24,11 @@ namespace Investments.InfraStructure.Data.Repositories
         public async Task<List<Ativo>> GetAllAsync()
         {
             return await _context.Ativos.ToListAsync();
+        }
+
+        public async Task<Ativo> GetByIdAsync(int id)
+        {
+            return await _context.Ativos.FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task SaveChangesAsync()

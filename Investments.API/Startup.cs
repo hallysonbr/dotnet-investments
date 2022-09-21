@@ -7,18 +7,11 @@ using Investments.InfraStructure.Data.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Investiments.API
 {
@@ -44,9 +37,10 @@ namespace Investiments.API
             services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-
-            services.AddControllers();
+            
+            services.AddControllers()
+                    .AddNewtonsoftJson(options => 
+                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize);
             
             services.AddMediatR(typeof(CadastrarGerenteCommand));
             
@@ -66,7 +60,7 @@ namespace Investiments.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Investments.API v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

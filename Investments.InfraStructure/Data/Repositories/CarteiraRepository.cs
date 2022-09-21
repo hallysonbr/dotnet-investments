@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Investments.Core.Entities;
 using Investments.Core.Repositories;
 using Investments.InfraStructure.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investments.InfraStructure.Data.Repositories
 {
@@ -21,6 +19,12 @@ namespace Investments.InfraStructure.Data.Repositories
         public async Task AddAsync(Carteira carteira)
         {
             await _context.Carteiras.AddAsync(carteira);            
+        }
+
+        public async Task<Carteira> GetByIdUsuarioAndIdAtivo(int usuarioId, int ativoId)
+        {
+            return await _context.Carteiras.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId 
+                                                                  && c.AtivoId == ativoId);
         }
 
         public async Task SaveChangesAsync()

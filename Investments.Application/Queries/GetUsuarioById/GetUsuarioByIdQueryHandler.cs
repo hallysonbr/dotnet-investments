@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Investments.Application.ViewModels;
@@ -23,7 +20,7 @@ namespace Investments.Application.Queries.GetUsuarioById
 
             if(usuario is null) return null;
             
-            return new UsuarioViewModel(usuario.Nome, usuario.Email, usuario.DataNascimento);
+            return new UsuarioViewModel(usuario.Id, usuario.Nome, usuario.Email, usuario.CalcularIdade(), usuario.Tipo, usuario.Ativos);
         }
     }
 }

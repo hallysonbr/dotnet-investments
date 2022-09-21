@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Investments.Core.Entities;
 using Investments.InfraStructure.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
