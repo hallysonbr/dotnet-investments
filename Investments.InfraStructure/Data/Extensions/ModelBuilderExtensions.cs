@@ -13,7 +13,7 @@ namespace Investments.InfraStructure.Data.Extensions
             #region Usuario
 
             var usuario = new Usuario("Admin", "admin@teste.com", 
-            "36F583DD16F4E1E201EB1E6F6D8E35A2CCB3BBE2658DE46B4FFAE7B0E9ED872E", 
+            "7676aaafb027c825bd9abab78b234070e702752f625b752e55e55b48e607e358", 
             new DateTime(1994, 04, 18), UsuarioTipoEnum.Admin);
 
             usuario.DefinirId(1);

@@ -28,7 +28,12 @@ namespace Investments.InfraStructure.Data.Repositories
                                           .ToListAsync();
         }
 
-        public async Task<Usuario> GetById(int id)
+        public async Task<Usuario> GetByEmailAndPasswordAsync(string email, string password)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        }
+
+        public async Task<Usuario> GetByIdAsync(int id)
         {
             return await _context.Usuarios.Include(u => u.Ativos)
                                           .ThenInclude(a => a.Ativo)

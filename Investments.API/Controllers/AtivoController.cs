@@ -4,6 +4,7 @@ using Investments.Application.Queries.GetAllAtivos;
 using Investments.Application.Queries.GetAllTipoAtivo;
 using Investments.Application.Queries.GetAtivoById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Investments.API.Controllers
@@ -20,6 +21,7 @@ namespace Investments.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Cliente")]
         public async Task<IActionResult> Get()
         {
             var query = new GetAllAtivosQuery();
@@ -28,6 +30,7 @@ namespace Investments.API.Controllers
         }
 
         [HttpGet("grupo")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetGrupos()
         {
             var query = new GetAllTipoAtivoQuery();
@@ -36,6 +39,7 @@ namespace Investments.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Cliente")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetAtivoByIdQuery(id);
@@ -47,6 +51,7 @@ namespace Investments.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] CadastrarAtivoCommand command)
         {
             var id = await _mediator.Send(command);

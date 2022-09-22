@@ -16,7 +16,7 @@ namespace Investments.Application.Queries.GetUsuarioById
         }
         public async Task<UsuarioViewModel> Handle(GetUsuarioByIdQuery request, CancellationToken cancellationToken)
         {
-            var usuario = await _uof.UsuarioRepository.GetById(request.Id);
+            var usuario = await _uof.UsuarioRepository.GetByIdAsync(request.Id);
 
             if(usuario is null) return null;
             
