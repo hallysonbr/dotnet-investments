@@ -7,7 +7,8 @@ namespace Investments.Core.Repositories
     {         
          Task AddAsync(Carteira carteira);
          Task<Carteira> GetByIdUsuarioAndIdAtivo(int usuarioId, int ativoId);
-         Task UpdateAsync();         
+         Task UpdateAsync();
+         Task DeleteAsync(Carteira carteira);         
          Task SaveChangesAsync();
     }
 }

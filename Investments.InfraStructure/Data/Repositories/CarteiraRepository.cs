@@ -21,6 +21,11 @@ namespace Investments.InfraStructure.Data.Repositories
             await _context.Carteiras.AddAsync(carteira);            
         }
 
+        public async Task DeleteAsync(Carteira carteira)
+        {
+            await Task.Run(() => _context.Remove(carteira));
+        }
+
         public async Task<Carteira> GetByIdUsuarioAndIdAtivo(int usuarioId, int ativoId)
         {
             return await _context.Carteiras.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId 

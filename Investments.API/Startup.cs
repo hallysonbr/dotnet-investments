@@ -1,7 +1,10 @@
+using FluentValidation.AspNetCore;
 using Investments.Application.Commands.CadastrarGerente;
+using Investments.Application.Validators;
 using Investments.Core.Repositories;
 using Investments.InfraStructure.CrossCutting.Auth.Implementations;
 using Investments.InfraStructure.CrossCutting.Auth.Interfaces;
+using Investments.InfraStructure.CrossCutting.Filters;
 using Investments.InfraStructure.Data.Context;
 using Investments.InfraStructure.Data.Repositories;
 using MediatR;
@@ -38,7 +41,8 @@ namespace Investiments.API
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             
-            services.AddControllers()
+            services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CadastrarAtivoCommandValidator>())
                     .AddNewtonsoftJson(options => 
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize);
             

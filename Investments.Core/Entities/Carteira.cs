@@ -1,3 +1,5 @@
+using System;
+
 namespace Investments.Core.Entities
 {
     public class Carteira : EntidadeBase
@@ -15,5 +17,22 @@ namespace Investments.Core.Entities
 
         public virtual Usuario Usuario { get; private set; }
         public virtual Ativo Ativo { get; private set; }
+
+        public void Comprar(decimal valor)
+        {
+            Saldo += valor;
+             Round();
+        }
+
+        public void Vender(decimal valor)
+        {
+            Saldo -= valor;
+            Round();
+        }
+
+        public void Round()
+        {
+            Saldo = Math.Round(Saldo, 2);           
+        }
     }
 }

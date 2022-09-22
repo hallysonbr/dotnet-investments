@@ -18,10 +18,13 @@ namespace Investments.Application.Commands.CadastrarCarteira
         public async Task<int> Handle(CadastrarCarteiraCommand request, CancellationToken cancellationToken)
         {
             //Fail Fast Validation            
-            var carteira = await _uof.CarteiraRepository.GetByIdUsuarioAndIdAtivo(request.UsuarioId, request.AtivoId);
+            var carteira = await _uof.CarteiraRepository.GetByIdUsuarioAndIdAtivo(request.Carteira.UsuarioId, 
+                                                                                  request.Carteira.AtivoId);
             if(carteira is not null) return -1;
 
-            carteira = new Carteira(request.UsuarioId, request.AtivoId, request.Saldo);
+            carteira = new Carteira(request.Carteira.UsuarioId, 
+                                    request.Carteira.AtivoId, 
+                                    request.Carteira.Saldo);
 
             await _uof.CarteiraRepository.AddAsync(carteira);
             await _uof.Commit();

@@ -2,6 +2,8 @@
 using Investments.Application.Commands.CadastrarCarteira;
 using Investments.Application.Commands.CadastrarCliente;
 using Investments.Application.Commands.CadastrarGerente;
+using Investments.Application.Commands.ComprarAtivo;
+using Investments.Application.Commands.VenderAtivo;
 using Investments.Application.Queries.GetAllClientes;
 using Investments.Application.Queries.GetAllGerentes;
 using Investments.Application.Queries.GetUsuarioById;
@@ -63,13 +65,28 @@ namespace Investiments.API.Controllers
         }
 
         [HttpPost("cliente/{id}/carteira")]
-        public async Task<IActionResult> PostCarteira([FromBody] CadastrarCarteiraCommand command)
+        public async Task<IActionResult> PostCarteira(int id, [FromBody] CadastrarCarteiraCommand command)
         {
-            var id = await _mediator.Send(command);
-
-            if(id <= 0) return BadRequest();
+            var carteitaId = await _mediator.Send(command);
+            if(carteitaId <= 0) return BadRequest();
             
-            return CreatedAtAction(nameof(GetById), new { id = id }, command);
+            return NoContent();
+        }
+
+        [HttpPut("cliente/{id}/carteira")]
+        public async Task<IActionResult> Put(int id, [FromBody] ComprarAtivoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPut("cliente/{id}/carteira/vender")]
+        public async Task<IActionResult> PutVender(int id, [FromBody] VenderAtivoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            if(result < 0) return BadRequest("Usuário não possui este ativo em carteira.");
+
+            return NoContent();
         }
     }
 }
