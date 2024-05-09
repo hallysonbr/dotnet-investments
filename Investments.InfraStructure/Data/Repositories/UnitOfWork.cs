@@ -20,17 +20,17 @@ namespace Investments.InfraStructure.Data.Repositories
 
         public IAtivoRepository AtivoRepository
         {
-            get { return _ativoRepository ?? new AtivoRepository(_context); }
+            get { return _ativoRepository ??= new AtivoRepository(_context); }
         }
 
         public ICarteiraRepository CarteiraRepository
         {
-            get { return _carteiraRepository ?? new CarteiraRepository(_context);}
+            get { return _carteiraRepository ??= new CarteiraRepository(_context);}
         }
 
         public IUsuarioRepository UsuarioRepository
         {
-           get { return _usuarioRepository ?? new UsuarioRepository(_context); }
+           get { return _usuarioRepository ??= new UsuarioRepository(_context); }
         }
 
         public async Task<int> Commit()
